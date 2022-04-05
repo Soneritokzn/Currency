@@ -20,6 +20,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.sql.SQLOutput;
+import java.util.ArrayList;
+import java.util.Currency;
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.Callable;
 
 public class Main {
 
@@ -32,28 +37,68 @@ public class Main {
         DocumentBuilder builder = factory.newDocumentBuilder();
         Document doc = builder.parse(conn.getInputStream());
         doc.getDocumentElement().normalize();
-        NodeList valuteList = doc.getElementsByTagName("Valute");
 
-        for (int i = 0; i < valuteList.getLength(); i++){
-            Node valute = valuteList.item(i);
-            if (valute.getNodeType() == Node.ELEMENT_NODE){
+        List<CurrencyData> currencyDataList = new ArrayList<>();
+        String numCode = null;
+        String charCode = null;
+        String nominal = null;
+        String name = null;
+        String value = null;
 
-                Element valuteElement = (Element) valute;
-                System.out.println(valuteElement.getAttribute("Valute"));
+        NodeList valute = (NodeList) doc.getElementsByTagName("Valute");
+        for(int i = 0; i < valute.getLength(); i++) {
+            NodeList valuteElement = (NodeList) valute.item(i);
+            for (int j = 0; j < valuteElement.getLength(); j++){
+                Node detail = valuteElement.item(j);
+                /*System.out.println("    " + detail.getTextContent() +";");*/
 
-               NodeList valuteDetails = valuteElement.getChildNodes();
-               for(int j = 0; j < valuteDetails.getLength(); j++){
-                   Node detail = valuteDetails.item(j);
-                   if (detail.getNodeType() == Node.ELEMENT_NODE){
-                       Element detailElement = (Element) detail;
-                       System.out.println("   " + detailElement.getTagName() +"; ");
-                   }
+                switch (detail.getNodeName()) {
+                    case "NumCode":{
+                        numCode = detail.getTextContent();
 
-               }
+                    }
+                    case "CharCode":{
+                        charCode = detail.getTextContent();
+
+                    }
+                    case"Nominal":{
+                        nominal = detail.getTextContent();
+
+                    }
+                    case "Name":{
+                       name = detail.getTextContent();
+                    }
+                    case "Value":{
+                        value = detail.getTextContent();
+                    }
+                }
+                CurrencyData currencyData = new CurrencyData(numCode,charCode, nominal, name, value);
+                currencyDataList.add(currencyData);
             }
+
 
         }
 
 
+        for (int y = 0; y < currencyDataList.size(); y++){
+            System.out.println(currencyDataList.get(y).getValue());
+        }
+
+
+
+
+
+
     }
 }
+
+
+
+
+
+
+
+
+
+
+

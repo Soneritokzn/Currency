@@ -72,16 +72,17 @@ public class Main {
                         value = detail.getTextContent();
                     }
                 }
-                CurrencyData currencyData = new CurrencyData(numCode,charCode, nominal, name, value);
-                currencyDataList.add(currencyData);
+
             }
+            CurrencyData currencyData = new CurrencyData(numCode,charCode, nominal, name, value);
+            currencyDataList.add(currencyData);
 
 
         }
 
 
         for (int y = 0; y < currencyDataList.size(); y++){
-            System.out.println(currencyDataList.get(y).getValue());
+            System.out.println(currencyDataList.get(y).getName() +"  "+ currencyDataList.get(y).getValue());
         }
 
 

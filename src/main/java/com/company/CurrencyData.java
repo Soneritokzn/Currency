@@ -37,10 +37,9 @@ public class CurrencyData {
     private String name;
     private String value;
 
+
+
 }
-
-
-
 
 
 
@@ -53,31 +52,3 @@ public class CurrencyData {
 
 
 
- /*NodeList valuteList = doc.getElementsByTagName("Valute");
-
-        for (int i = 0; i < valuteList.getLength(); i++) {
-            Node valute = valuteList.item(i);
-            if (valute.getNodeType() == Node.ELEMENT_NODE) {
-                Element valuteElement = (Element) valute;
-                System.out.println(valuteElement.getAttribute("Valute"));
-                NodeList valuteDetails = valuteElement.getChildNodes();
-                for (int j = 0; j < valuteDetails.getLength(); j++) {
-                    Node detail = valuteDetails.item(j);
-                    if (detail.getNodeType() == Node.ELEMENT_NODE) {
-                        Element detailElement = (Element) detail;
-                     System.out.println("   " + detailElement.getTextContent() +"; ");
-                        switch (detailElement.getNodeName()) {
-                            case "Name": {
-                                name = detailElement.getTextContent();
-                            }
-                            case "Value": {
-                                value = (detailElement.getTextContent());
-                            }
-                        }
-                    }
-                    CurrencyData currencyData = new CurrencyData(name, value);
-                    currencyDataList.add(currencyData);
-
-                }
-            }
-        }*/

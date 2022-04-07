@@ -20,10 +20,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.sql.SQLOutput;
-import java.util.ArrayList;
-import java.util.Currency;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.Callable;
 
 public class Main {
@@ -44,6 +41,8 @@ public class Main {
         String nominal = null;
         String name = null;
         String value = null;
+
+
 
         NodeList valute = (NodeList) doc.getElementsByTagName("Valute");
         for(int i = 0; i < valute.getLength(); i++) {
@@ -80,13 +79,34 @@ public class Main {
 
         }
 
+        Scanner sc = new Scanner(System.in);
+        /*System.out.println("Введите валюту 1 ");
+        String userEntryFirst = sc.next();
+        System.out.println("Введите валюту 2");
+        String userEntrySecond = sc.next();*/
+        System.out.println("Введите количество");
+        Integer amount = sc.nextInt();
+
 
         for (int y = 0; y < currencyDataList.size(); y++){
-            System.out.println(currencyDataList.get(y).getName() +"  "+ currencyDataList.get(y).getValue());
+
+            /*System.out.println(currencyDataList.get(y).getName() +"  "+ currencyDataList.get(y).getValue());*/
+
         }
+        String str1 = currencyDataList.get(7).getValue();
+        String str2 = currencyDataList.get(18).getValue();
+        str1 = str1.replace(",",".");
+        str2 = str2.replace(",",".");
+        float num1 = Float.parseFloat(str1);
+        float num2 = Float.parseFloat(str2);
+        float result = num1 / num2 * amount;
 
 
-
+        System.out.println(currencyDataList.get(7).getName());
+        System.out.println(num1);
+        System.out.println(currencyDataList.get(18).getName());
+        System.out.println(num2);
+        System.out.println(result);
 
 
 

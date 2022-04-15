@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Objects;
+
 public class CurrencyData {
 
 
@@ -38,7 +40,10 @@ public class CurrencyData {
     private String value;
 
 
-
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }
 
 

@@ -16,6 +16,7 @@ import java.text.CollationKey;
 import java.text.Collator;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
@@ -38,6 +39,8 @@ public class Main {
         String nominal = null;
         String name = null;
         String value = null;
+
+
 
 
 
@@ -82,24 +85,36 @@ public class Main {
         System.out.println("Введите валюту 2");
         String userEntrySecond = sc.next();
         System.out.println("Введите количество");
-        Integer amount = sc.nextInt();
+        int amount = sc.nextInt();
 
         Collator coll = Collator.getInstance();
 
 
-
-
         for (int y = 0; y < currencyDataList.size(); y++){
 
-            System.out.println(currencyDataList.get(0).getName());
+            float num1 = 0;
+            float num2 = 0;
 
-            boolean i = coll.equals(userEntryFirst, currencyDataList.get(y).getName());
+            boolean i = coll.equals(userEntryFirst, currencyDataList.get(y).getCharCode());
+            boolean j = coll.equals(userEntrySecond, currencyDataList.get(y).getCharCode());
              if (i) {
-                 System.out.println(currencyDataList.get(y).getValue());
-                 break;
+                 System.out.println(currencyDataList.get(y).getName());
+                 String val1 = currencyDataList.get(y).getValue();
+                 val1 = val1.replace(",", ".");
+                 System.out.println(val1);
+                 num1 = Float.parseFloat(val1);
              }
-             else System.out.println("Problem");
-             break;
+             if (j) {
+                 System.out.println(currencyDataList.get(y).getName());
+                 String val2 = currencyDataList.get(y).getValue();
+                 val2 = val2.replace(",", ".");
+                 System.out.println(val2);
+                 num2 = Float.parseFloat(val2);
+
+             }
+
+            /*float result = (num1 / num2) * amount;
+            System.out.println(result);*/
 
 
 
@@ -107,13 +122,13 @@ public class Main {
             /*System.out.println(currencyDataList.get(y).getName() +"  "+ currencyDataList.get(y).getValue());*/
 
         }
-        /*String str1 = currencyDataList.get(7).getValue();
-        String str2 = currencyDataList.get(18).getValue();
-        str1 = str1.replace(",",".");
-        str2 = str2.replace(",",".");
-        float num1 = Float.parseFloat(str1);
-        float num2 = Float.parseFloat(str2);
-        float result = num1 / num2 * amount;*/
+
+
+
+
+
+
+
 
 
         /*System.out.println(currencyDataList.get(7).getName());

@@ -22,7 +22,8 @@ import java.util.Scanner;
 public class Main {
 
 
-
+    private static float num1;
+    private static float num2;
 
     public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException {
         URL url = new URL("https://cbr.ru/scripts/XML_daily.asp");
@@ -39,10 +40,6 @@ public class Main {
         String nominal = null;
         String name = null;
         String value = null;
-
-
-
-
 
         NodeList valute = doc.getElementsByTagName("Valute");
         for(int i = 0; i < valute.getLength(); i++) {
@@ -90,19 +87,20 @@ public class Main {
         Collator coll = Collator.getInstance();
 
 
+
         for (int y = 0; y < currencyDataList.size(); y++){
 
-            float num1 = 0;
-            float num2 = 0;
+
 
             boolean i = coll.equals(userEntryFirst, currencyDataList.get(y).getCharCode());
             boolean j = coll.equals(userEntrySecond, currencyDataList.get(y).getCharCode());
              if (i) {
+
                  System.out.println(currencyDataList.get(y).getName());
                  String val1 = currencyDataList.get(y).getValue();
                  val1 = val1.replace(",", ".");
                  System.out.println(val1);
-                 num1 = Float.parseFloat(val1);
+                  num1 = Float.parseFloat(val1);
              }
              if (j) {
                  System.out.println(currencyDataList.get(y).getName());
@@ -113,15 +111,12 @@ public class Main {
 
              }
 
-            /*float result = (num1 / num2) * amount;
-            System.out.println(result);*/
-
-
-
 
             /*System.out.println(currencyDataList.get(y).getName() +"  "+ currencyDataList.get(y).getValue());*/
 
         }
+        float result = (num1 / num2) * amount;
+        System.out.println(result);
 
 
 

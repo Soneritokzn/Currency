@@ -13,6 +13,10 @@ public class CurrencyData {
         this.value = value;
     }
 
+    public CurrencyData() {
+
+    }
+
     public String getNumCode() {
         return numCode;
     }
@@ -39,11 +43,28 @@ public class CurrencyData {
     private String name;
     private String value;
 
+    public float num1;
 
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public float getNum1() {
+        return num1;
     }
+
+    public void setNum1(float num1) {
+        this.num1 = num1;
+    }
+
+    public float getNum2() {
+        return num2;
+    }
+
+    public void setNum2(float num2) {
+        this.num2 = num2;
+    }
+
+    public float num2;
+
+
+
 }
 
 
